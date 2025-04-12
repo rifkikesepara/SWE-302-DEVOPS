@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: spring-app
+    image: rifkikesepara/ozmenapp:latest
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_USER=ozmen
+      - POSTGRES_PASSWORD=12345
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/devops
+      - SPRING_DATASOURCE_USERNAME=ozmen
+      - SPRING_DATASOURCE_PASSWORD=12345
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - app-data:/path/to/app-data
+
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      - POSTGRES_USER=ozmen
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=devops
+    ports:
+      - "5433:5432"
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  app-data:
+  db-data:

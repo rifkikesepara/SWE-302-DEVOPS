@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Expense Management System</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <!-- Navigation Button -->
+    <div class="mb-4">
+        <a href="/addExpense" class="btn btn-primary">Add Expense</a>
+    </div>
+
+    <h2>Expenses List</h2>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>EXPENSE ID</th>
+            <th>AMOUNT</th>
+            <th>CURRENCY</th>
+            <th>CATEGORY</th>
+            <th>DATE</th>
+            <th>LOCATION</th>
+            <th>METHOD</th>
+            <th>DESCRIPTION</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="expense : ${expenses}">
+            <td th:text="${expense.id}"></td>
+            <td th:text="${expense.amount}"></td>
+            <td th:text="${expense.currency}"></td>
+            <td th:text="${expense.category}"></td>
+            <td th:text="${expense.date}"></td>
+            <td th:text="${expense.location}"></td>
+            <td th:text="${expense.payment_method}"></td>
+            <td th:text="${expense.description}"></td>
+            <td>
+                <form th:action="@{/updateExpense/{id}(id=${expense.id})}" method="post">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/deleteExpense/{id}(id=${expense.id})}" method="post">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
