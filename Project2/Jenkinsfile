@@ -14,7 +14,8 @@ pipeline {
 
         stage('Build JAR') {
             steps {
-                sh "cd Project2"
+                sh 'cd Project2'
+                sh 'gradle --version'
                 sh 'gradle build'
             }
         }
