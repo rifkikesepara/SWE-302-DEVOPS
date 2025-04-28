@@ -1,10 +1,10 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ "uat" ]
-  pull_request:
-    branches: [ "uat" ]
+   workflow_run:
+      workflows: ["Java CI with Gradle"]
+      types:
+        - completed
 
 jobs:
 
