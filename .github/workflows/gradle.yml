@@ -64,3 +64,14 @@ jobs:
 
       - name: Push to Dockerhub
         run: docker push rifkikesepara/ozmenapp:latest
+
+  run-container:
+    runs-on: self-hosted
+    needs: image
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Docker Compose
+        run: docker-compose pull  && docker-compose up -d
