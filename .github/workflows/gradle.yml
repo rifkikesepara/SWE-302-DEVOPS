@@ -40,8 +40,8 @@ jobs:
 
       - name: Upload JAR via SFTP
         run: |
-          sftp -i key.pem -o IdentitiesOnly=yes -o StrictHostKeyChecking=no username@your-sftp-server <<EOF
-          put build/libs/*.jar /remote/path/
+          sftp -i key.pem -o IdentitiesOnly=yes -o StrictHostKeyChecking=no ubuntu@ec2-51-20-248-11.eu-north-1.compute.amazonaws.com <<EOF
+          put build/libs/*.jar /home/ubuntu/
           bye
           EOF
 
