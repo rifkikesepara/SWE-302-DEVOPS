@@ -33,11 +33,18 @@ jobs:
           name: built-jar
           path: build/libs/*.jar
 
+      - name: Decode and Save PEM Key
+        run: |
+          echo "${{ secrets.SFTP_PRIVATE_KEY }}" | base64 --decode > key.pem
+          chmod 600 key.pem
+
       - name: Upload JAR via SFTP
         run: |
-          scp -o StrictHostKeyChecking=no -P 22 build/libs/*.jar ubuntu@ec2-51-20-248-11.eu-north-1.compute.amazonaws.com:/home/ubuntu
-        env:
-          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          sftp -i key.pem -o IdentitiesOnly=yes -o StrictHostKeyChecking=no username@your-sftp-server <<EOF
+          put build/libs/*.jar /remote/path/
+          bye
+          EOF
+
   image:
     runs-on: ubuntu-latest
     needs: build
