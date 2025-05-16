@@ -36,8 +36,7 @@ pipeline {
 
         stage('Pull & Run Container') {
             steps {
-                sh 'docker pull ${DOCKER_IMAGE}'
-                sh 'docker run -d --name my-container ${DOCKER_IMAGE}'
+                sh 'docker-compose down && sudo docker-compose pull  && sudo docker-compose up -d'
             }
         }
     }
