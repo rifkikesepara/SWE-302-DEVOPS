@@ -6,6 +6,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "rifkikesepara/ozmenapp"
+        DOCKERHUB_CREDENTIALS=credentials("rifki-dockerhub")
     }
 
     stages {
@@ -24,6 +25,12 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t ${DOCKER_IMAGE} .'
+            }
+        }
+
+        stage('Login Docker Hub') {
+            steps {
+                sh 'echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password--stdin'
             }
         }
 
