@@ -18,6 +18,7 @@ pipeline {
 
         stage('Build JAR') {
             steps {
+                sh 'gradle clean'
                 sh 'gradle build'
             }
         }
