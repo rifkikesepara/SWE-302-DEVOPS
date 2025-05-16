@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    agent {
+        label 'win-agent'
+    }
+
 
     tools {
         gradle "8.14"
