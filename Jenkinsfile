@@ -4,10 +4,6 @@ pipeline {
     }
 
 
-    tools {
-        gradle "8.14"
-    }
-
     environment {
         DOCKER_IMAGE = "rifkikesepara/ozmenapp"
     }
