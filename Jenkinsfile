@@ -36,7 +36,9 @@ pipeline {
 
         stage('Pull & Run Container') {
             steps {
-                sh 'docker-compose down && sudo docker-compose pull  && sudo docker-compose up -d'
+                sh 'docker-compose down'
+                sh 'docker-compose pull'
+                sh 'docker-compose up -d'
             }
         }
     }
