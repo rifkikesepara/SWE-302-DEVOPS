@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'uat',url: 'https://github.com/rifkikesepara/SWE-302-DEVOPS.git'
+                git branch: 'jenkins',url: 'https://github.com/rifkikesepara/SWE-302-DEVOPS.git'
             }
         }
 
