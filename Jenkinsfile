@@ -34,11 +34,25 @@ pipeline {
             }
         }
 
-        stage('K8 Deployment') {
+        stage('Deploy Kubernetes Resources') {
             steps {
-                sh 'kubectl apply -f k8/pvc.yaml'
+                sh 'kubectl apply -f k8/app-deployment.yaml'
+                sh 'kubectl apply -f k8/app-service.yaml'
             }
         }
+
+        stage('Verify Deployment') {
+            steps {
+                sh 'kubectl get pods'
+                sh 'kubectl get svc'
+            }
+        }
+
+        // stage('Scale Application') {
+        //     steps {
+        //         sh 'kubectl scale deployment spring-app --replicas=2'
+        //     }
+        // }
 
         stage('Pull & Run Container') {
             steps {
