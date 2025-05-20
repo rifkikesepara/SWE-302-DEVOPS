@@ -1,10 +1,10 @@
-package com.bigdata.Project2;
+package com.sales.sales;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Project2ApplicationTests {
+class SalesApplicationTests {
 
 	@Test
 	void contextLoads() {

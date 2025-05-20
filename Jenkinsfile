@@ -3,7 +3,6 @@ pipeline {
         label 'win-agent'
     }
 
-
     environment {
         DOCKER_IMAGE = "rifkikesepara/ozmenapp"
         DOCKERHUB_CREDENTIALS=credentials("rifki-dockerhub")
@@ -18,8 +17,8 @@ pipeline {
 
         stage('Build JAR') {
             steps {
-                sh 'gradle clean'
-                sh 'gradle build'
+                sh 'mvn clean'
+                sh 'mvn package'
             }
         }
 
@@ -32,6 +31,12 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 sh 'docker push ${DOCKER_IMAGE}'
+            }
+        }
+
+        stage('K8 Deployment') {
+            steps {
+                sh 'kubectl apply -f k8/pvc.yaml'
             }
         }
 
