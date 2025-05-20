@@ -4,7 +4,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE = "rifkikesepara/ozmenapp"
+        DOCKER_IMAGE = "rifkikesepara/devops4hw"
         DOCKERHUB_CREDENTIALS=credentials("rifki-dockerhub")
     }
 
