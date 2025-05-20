@@ -49,11 +49,11 @@ pipeline {
             }
         }
 
-        // stage('Scale Application') {
-        //     steps {
-        //         sh 'kubectl scale deployment spring-app --replicas=2'
-        //     }
-        // }
+        stage('Scale Application') {
+            steps {
+                sh 'kubectl scale deployment spring-app --replicas=2'
+            }
+        }
 
         stage('Pull & Run Container') {
             steps {
