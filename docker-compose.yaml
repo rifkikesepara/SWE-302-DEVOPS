@@ -9,6 +9,5 @@ services:
     restart: always
     volumes:
       - app-data:/path/to/app-data
-  
 volumes:
   app-data:
