@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageController {
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("message", "Our Professor is Ahmet Özmen");
+        model.addAttribute("message", "Our Professor is Ahmet Özmen \uD83D\uDE00");
         return "index";
     }
 
