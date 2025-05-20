@@ -43,6 +43,7 @@ pipeline {
 
         stage('Verify Deployment') {
             steps {
+                sh 'kubectl delete pods --all'
                 sh 'kubectl get pods'
                 sh 'kubectl get svc'
             }
