@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "rifkikesepara/devops4hw"
-        DOCKERHUB_CREDENTIALS=credentials("rifki-dockerhub")
+        DOCKER_CREDENTIALS_ID="rifki-dockerhub"
     }
 
     stages {
@@ -28,6 +28,16 @@ pipeline {
             }
         }
 
+        stage('Login to Docker Hub') {
+            steps {
+                sh "docker logout"
+                withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                }
+            }
+        }
+
+
         stage('Push Docker Image') {
             steps {
                 sh 'docker push ${DOCKER_IMAGE}'
@@ -49,11 +59,11 @@ pipeline {
             }
         }
 
-        stage('Scale Application') {
-            steps {
-                sh 'kubectl scale deployment spring-app --replicas=2'
-            }
-        }
+        // stage('Scale Application') {
+        //     steps {
+        //         sh 'kubectl scale deployment spring-app --replicas=2'
+        //     }
+        // }
 
         stage('Pull & Run Container') {
             steps {
