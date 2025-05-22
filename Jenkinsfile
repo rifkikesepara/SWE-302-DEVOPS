@@ -43,7 +43,9 @@ pipeline {
         }
 
         stage('Start Minilube') {
-            sh 'miinkube start'
+            steps{
+                sh 'miinkube start'
+            }
         }
 
         stage('Deploy Kubernetes Resources') {
