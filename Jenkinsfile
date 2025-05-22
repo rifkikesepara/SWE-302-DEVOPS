@@ -42,6 +42,10 @@ pipeline {
             }
         }
 
+        stage('Start Minilube') {
+            sh 'miinkube start'
+        }
+
         stage('Deploy Kubernetes Resources') {
             steps {
                 sh 'kubectl apply -f k8/app-deployment.yaml'
