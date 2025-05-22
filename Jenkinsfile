@@ -44,7 +44,7 @@ pipeline {
 
         stage('Start Minilube') {
             steps{
-                sh 'miinkube start'
+                sh 'minikube start'
             }
         }
 
